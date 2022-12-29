@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130882391-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130882391-1');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/tiltedpage-scroll.css">
+    <!--<link rel="stylesheet" href="./responsive-START.css">-->
+     <title>Midterm: </title>
+  </head>
+
+<body>
+<center><h1>CME MUSIC</h1></center>
+
+<nav class="menu">
+  <a href="index.php"> HOME </a>
+  <a href="becomeastreamer2.php"> Become a Streamer </a>
+  <a href="newmusic3.html"> New Music </a>
+  <a href="playlistvibes4.php"> Playlist Vibes </a>
+  <a href="musiclibrary5.php"> Music Library </a>
+</nav>
+
+  <div class="main">
+    <section class="page1">
+    <img src="assets/images/kehlani.jpg">
+    <br>
+
+    </section>
+
+    <section class="last-page">
+    <img src="assets/images/beyonce.JPG">
+    </section>
+
+    <section class="last-page">
+    <img src="assets/images/drake.jpg">
+    </section>
+
+        <section class="last-page">
+        <img src="assets/images/tory.JPG">
+        </section>
+
+
+  </div>
+
+
+
+
+  <div class="container">
+    <!-- Content here -->
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Genre</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php
+    include('include/db.php');
+    $sql = "SELECT * FROM `new_music`";
+    //$result = mysql_query($con,$sql);
+    // Perform query
+    if ($result = mysqli_query($con, $sql)) {
+      $total_orders = mysqli_num_rows($result);
+      while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>".$row['id']."</td>";
+        echo "<td>".$row['Artist']."</td>";
+        echo "<td>".$row['Genre']."</td>";
+        echo '<td><a href="new_music_details.php?new_music_id='.$row['id'].'"></a></td>';
+      }
+      // Free result set
+      mysqli_free_result($result);
+    } else {
+      echo "No results";
+    }
+
+    mysqli_close($con);
+
+    ?>
+  </tbody>
+  </table>
+
+  </div>
+
+
+
+  <?php include("include/scripts.php"); ?>
+
+  </body>
+    </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/js/jquery.tiltedpage-scroll.js"></script>
+  <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>
